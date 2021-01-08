@@ -166,4 +166,3 @@ console.log(linkedList.elementAt(2), "index 2");
 console.log(linkedList.elementAt(3), "index 3");
 console.log(linkedList.elementAt(4), "index 4");
 linkedList.print();
-console.log(linkedList);

@@ -43,19 +43,19 @@ class BinarySearchTree {
         return null;
       }
       if (value === node.value) {
-        // if node has no children return null
+        // if node has no children return null => in other words just set the current node to null(delete it)
         if (node.left == null && node.right == null) {
           return null;
         }
-        // if node has no left child return the right child
+        // if node has no left child return the right child => in other words replace(delete) the current node with the node on the right
         if (node.left == null) {
           return node.right;
         }
-        // if node has no right child return the left child
+        // if node has no right child return the left child => in other words replace(delete) the current node with the node on the left
         if (node.right == null) {
           return node.left;
         }
-        // node has two children
+        // if node has two children take the right child of the node and then from there select the leftmost node, after that set the current node value to the leftmost value of the right node and the current node "right" should be set recursively
         let tempNode = node.right;
         while (tempNode.left != null) {
           tempNode = tempNode.left;

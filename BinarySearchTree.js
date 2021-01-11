@@ -133,19 +133,97 @@ class BinarySearchTree {
       return isBST;
     }
   }
+
+  findMinHeight(root = this.root) {
+    if (root == null) return -1;
+    if (root.left == null && root.right == null) return 0;
+    if (root.left == null) {
+      return this.findMinHeight(root.right) + 1;
+    }
+    if (root.right == null) {
+      return this.findMinHeight(root.left) + 1;
+    }
+    const nodeLeftHeight = this.findMinHeight(root.left);
+    const nodeRightHeight = this.findMinHeight(root.right);
+    return Math.min(nodeLeftHeight, nodeRightHeight) + 1;
+  }
+
+  findMaxHeight(root = this.root) {
+    if (root == null) return -1;
+    if (root.left == null && root.right == null) return 0;
+    if (root.left == null) {
+      return this.findMaxHeight(root.right) + 1;
+    }
+    if (root.right == null) {
+      return this.findMaxHeight(root.left) + 1;
+    }
+    const nodeLeftHeight = this.findMaxHeight(root.left);
+    const nodeRightHeight = this.findMaxHeight(root.right);
+    return Math.max(nodeLeftHeight, nodeRightHeight) + 1;
+  }
+
+  isBalanced() {}
+
+  inOrder() {
+    if (this.root == null) {
+      return null;
+    } else {
+      const values = [];
+      function traverseTree(node) {
+        node.left && traverseTree(node.left);
+        values.push(node.value);
+        node.right && traverseTree(node.right);
+      }
+      traverseTree(this.root);
+      return values;
+    }
+  }
+
+  preOrder() {
+    if (this.root == null) {
+      return null;
+    } else {
+      const values = [];
+      function traverseTree(node) {
+        values.push(node.value);
+        node.left && traverseTree(node.left);
+        node.right && traverseTree(node.right);
+      }
+      traverseTree(this.root);
+      return values;
+    }
+  }
+
+  postOrder() {
+    if (this.root == null) {
+      return null;
+    } else {
+      const values = [];
+      function traverseTree(node) {
+        node.left && traverseTree(node.left);
+        node.right && traverseTree(node.right);
+        values.push(node.value);
+      }
+      traverseTree(this.root);
+      return values;
+    }
+  }
 }
 
 const bst = new BinarySearchTree();
-bst.add(5);
-bst.add(1);
-bst.add(2);
-bst.add(3);
-bst.add(4);
-bst.add(6);
-bst.add(7);
-bst.add(8);
 bst.add(9);
+bst.add(4);
+bst.add(17);
+bst.add(3);
+bst.add(6);
+bst.add(22);
+bst.add(5);
+bst.add(7);
+bst.add(20);
 bst.add(10);
-bst.remove(9);
-console.log(bst.isBinarySearchTree(bst));
-console.log(bst);
+// bst.remove(9);
+console.log(bst.inOrder());
+console.log(bst.preOrder());
+console.log(bst.postOrder());
+console.log(bst.findMinHeight());
+console.log(bst.findMaxHeight());

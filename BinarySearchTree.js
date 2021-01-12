@@ -208,6 +208,17 @@ class BinarySearchTree {
       return values;
     }
   }
+  
+  invert(node = this.root) {
+    if (node) {
+      let tempNode = node.left;
+      node.left = node.right;
+      node.right = tempNode;
+      this.invert(node.left);
+      this.invert(node.right);
+    }
+    return node;
+  }
 }
 
 const bst = new BinarySearchTree();

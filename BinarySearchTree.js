@@ -162,7 +162,9 @@ class BinarySearchTree {
     return Math.max(nodeLeftHeight, nodeRightHeight) + 1;
   }
 
-  isBalanced() {}
+  isBalanced() {
+    // TODO
+  }
 
   inOrder() {
     if (this.root == null) {
